@@ -20,14 +20,26 @@
         
          :root {
             --header-height: 3.5rem;
-            /*========== Colors ==========*/
-            --hue: 224;
-            --first-color: hsl(224, 89%, 60%);
-            --first-color-alt: hsl(224, 56%, 35%);
-            --title-color: hsl(228, 8%, 15%);
-            --text-color: hsl(228, 8%, 25%);
-            --body-color: hsl(0, 0%, 95%);
+            /*========== Colors - Teal/Turquoise + Deep Slate + Soft Coral ==========*/
+            --hue: 180;
+            --first-color: hsl(180, 65%, 45%);
+            /* Teal/Turquoise - main brand color */
+            --first-color-alt: hsl(180, 60%, 38%);
+            /* Darker teal for depth */
+            --accent-color: hsl(210, 25%, 25%);
+            /* Deep Slate - professional anchor */
+            --coral-accent: hsl(10, 75%, 65%);
+            /* Soft Coral - warm accent */
+            --title-color: hsl(210, 30%, 20%);
+            /* Deep slate for headings */
+            --text-color: hsl(210, 15%, 35%);
+            /* Medium slate for body text */
+            --body-color: hsl(180, 25%, 97%);
+            /* Very light teal background */
             --container-color: hsl(0, 0%, 100%);
+            /* Pure white for cards */
+            --shadow-color: hsla(180, 65%, 45%, 0.15);
+            /* Teal shadow */
             /*========== Font and typography ==========*/
             --body-font: 'Poppins', sans-serif;
             --biggest-font-size: 2rem;
@@ -285,16 +297,19 @@
         
         .home__social-link {
             display: flex;
-            background: var(--container-color);
+            background: linear-gradient(135deg, var(--first-color), var(--first-color-alt));
             padding: 0.5rem;
-            color: var(--first-color);
+            color: #fff;
             font-size: 1.5rem;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            transition: transform 0.4s;
+            transition: all 0.4s;
+            box-shadow: 0 4px 12px var(--shadow-color);
         }
         
         .home__social-link:hover {
             transform: translateY(-0.25rem);
+            background: linear-gradient(135deg, var(--coral-accent), hsl(10, 80%, 60%));
+            box-shadow: 0 8px 16px hsla(10, 75%, 65%, 0.3);
         }
         
         .home__image {
@@ -304,22 +319,24 @@
         .home__blob {
             width: 320px;
             fill: var(--first-color);
-            filter: drop-shadow(0 12px 12px hsla(var(--hue), 100%, 40%, 0.2));
+            filter: drop-shadow(0 12px 24px var(--shadow-color));
         }
         /*=============== BUTTON ===============*/
         
         .button {
             display: inline-block;
-            background-color: var(--first-color);
+            background: linear-gradient(135deg, var(--first-color), var(--first-color-alt));
             padding: 1rem 1.75rem;
             border-radius: 0.5rem;
             color: #fff;
             font-weight: var(--font-medium);
-            transition: box-shadow 0.4s;
+            transition: all 0.4s;
+            box-shadow: 0 4px 12px var(--shadow-color);
         }
         
         .button:hover {
-            box-shadow: 0 8px 24px hsla(var(--hue), 100%, 40%, 0.25);
+            box-shadow: 0 8px 24px var(--shadow-color);
+            transform: translateY(-2px);
         }
         /*=============== ABOUT ===============*/
         
@@ -345,6 +362,7 @@
         
         .about__blob path {
             stroke: var(--first-color);
+            stroke-width: 8;
         }
         /*=============== SKILLS ===============*/
         
@@ -403,7 +421,8 @@
             padding: 3rem 1.25rem;
             border-radius: 1rem;
             border: 2px solid transparent;
-            transition: border 0.4s;
+            transition: all 0.4s;
+            box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.05);
         }
         
         .services__icon {
@@ -411,6 +430,7 @@
             font-size: 4rem;
             color: var(--first-color);
             margin-bottom: 0.75rem;
+            transition: all 0.4s;
         }
         
         .services__title {
@@ -420,6 +440,45 @@
         
         .services__card:hover {
             border: 2px solid var(--first-color);
+            box-shadow: 0 8px 24px var(--shadow-color);
+            transform: translateY(-5px);
+        }
+        
+        .services__card:hover .services__icon {
+            color: var(--coral-accent);
+            transform: scale(1.1);
+        }
+        /*=============== CERTIFICATIONS ===============*/
+        
+        .certifications {
+            background-color: var(--body-color);
+        }
+        
+        .certifications__container {
+            row-gap: 2rem;
+            justify-content: center;
+            padding-block: 1rem;
+        }
+        
+        .certifications__card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1);
+            transition: all 0.4s;
+            border: 3px solid transparent;
+        }
+        
+        .certifications__card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 12px 32px var(--shadow-color);
+            border: 3px solid var(--first-color);
+        }
+        
+        .certifications__img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
         /*=============== PROJECTS ===============*/
         
@@ -437,6 +496,13 @@
             position: relative;
             border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1);
+            transition: all 0.4s;
+        }
+        
+        .projects__card:hover {
+            box-shadow: 0 12px 32px var(--shadow-color);
+            transform: translateY(-5px);
         }
         
         .projects__img {
@@ -450,7 +516,7 @@
             bottom: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, hsla(var(--hue), 24%, 40%, 0.3) 0%, hsla(var(--hue), 24%, 4%, 1) 95%);
+            background: linear-gradient(180deg, hsla(180, 65%, 10%, 0.3) 0%, hsla(180, 65%, 5%, 0.95) 95%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -461,15 +527,16 @@
         
         .projects__subtitle {
             display: block;
-            color: var(--text-color);
+            color: var(--first-color);
             font-size: var(--small-font-size);
             margin-bottom: 0.25rem;
+            font-weight: var(--font-semi-bold);
         }
         
         .projects__title {
             font-size: var(--h2-font-size);
             margin-bottom: 0.75rem;
-            color: var(--title-color);
+            color: #fff;
         }
         
         .projects__button {
@@ -477,10 +544,17 @@
             align-items: center;
             column-gap: 0.5rem;
             font-weight: var(--font-medium);
-            background-color: var(--first-color);
+            background: linear-gradient(135deg, var(--coral-accent), hsl(10, 80%, 60%));
             color: #fff;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px hsla(10, 75%, 65%, 0.3);
+        }
+        
+        .projects__button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px hsla(10, 75%, 65%, 0.4);
         }
         
         .projects__button i {
@@ -496,45 +570,161 @@
             padding-top: 1rem;
         }
         
-        .contact__form,
-        .contact__group {
-            display: grid;
-            row-gap: 1rem;
-        }
-        
         .contact__form {
             position: relative;
+            background: var(--container-color);
+            padding: 3rem 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px hsla(180, 65%, 45%, 0.1);
         }
         
-        .contact__input {
-            padding: 1rem 1.25rem;
-            border-radius: 0.5rem;
-            background-color: var(--container-color);
-            color: var(--title-color);
-            border: 2px solid var(--text-color);
-        }
-        
-        .contact__input::placeholder {
-            color: var(--text-color);
-        }
-        
-        .contact__form textarea {
-            height: 11rem;
-            resize: none;
+        .contact__form-div {
+            position: relative;
             margin-bottom: 2rem;
+            height: 4rem;
+        }
+        
+        .contact__form-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--text-color);
+            background: none;
+            color: var(--text-color);
+            outline: none;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+        
+        .contact__form-input:focus {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--container-color), var(--container-color)) padding-box, linear-gradient(135deg, var(--first-color), var(--coral-accent)) border-box;
+            box-shadow: 0 4px 20px var(--shadow-color);
+        }
+        
+        .contact__form-tag {
+            position: absolute;
+            top: -0.75rem;
+            left: 1.25rem;
+            z-index: 10;
+            background-color: var(--container-color);
+            color: var(--text-color);
+            font-size: var(--smaller-font-size);
+            font-weight: var(--font-medium);
+            padding: 0.25rem 0.75rem;
+            transition: all 0.4s;
+        }
+        
+        .contact__form-input:focus~.contact__form-tag {
+            color: var(--first-color);
+        }
+        
+        .contact__form-area {
+            height: 11rem;
+        }
+        
+        .contact__form-area textarea {
+            resize: none;
+            padding-top: 1rem;
         }
         
         .contact__button {
-            justify-self: center;
+            width: 100%;
+            padding: 1.25rem;
+            font-size: var(--normal-font-size);
+            border: none;
+            outline: none;
             cursor: pointer;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--first-color), var(--first-color-alt));
+            box-shadow: 0 6px 24px var(--shadow-color);
+        }
+        
+        .contact__button:hover {
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transform: translateY(-2px);
         }
         
         .contact__message {
-            position: absolute;
-            left: 0;
-            bottom: 4.5rem;
             font-size: var(--small-font-size);
+            position: absolute;
+            bottom: -1.5rem;
+            left: 1.5rem;
+            color: var(--first-color);
+            font-weight: var(--font-medium);
+        }
+        
+        .contact__description {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: var(--normal-font-size);
+            color: var(--text-color);
+        }
+        /*=============== CONTACT INFO ===============*/
+        
+        .contact__info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact__card {
+            background: var(--container-color);
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s;
+            box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.05);
+        }
+        
+        .contact__card:hover {
+            border: 2px solid var(--first-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+        
+        .contact__card-icon {
+            font-size: 2.5rem;
+            color: var(--first-color);
+            margin-bottom: 0.75rem;
+            display: block;
+            transition: all 0.4s;
+        }
+        
+        .contact__card:hover .contact__card-icon {
+            color: var(--coral-accent);
+            transform: scale(1.1);
+        }
+        
+        .contact__card-title {
+            font-size: var(--small-font-size);
+            font-weight: var(--font-semi-bold);
             color: var(--title-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact__card-data {
+            font-size: var(--smaller-font-size);
+            color: var(--text-color);
+            display: block;
+        }
+        
+        .contact__card-link {
+            color: var(--first-color);
+            font-weight: var(--font-medium);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact__card-link:hover {
+            color: var(--coral-accent);
         }
         /*=============== FOOTER ===============*/
         
@@ -570,16 +760,18 @@
         
         .footer__social-link {
             display: flex;
-            background: var(--first-color-alt);
+            background: linear-gradient(135deg, var(--accent-color), hsl(210, 30%, 30%));
             padding: 0.5rem;
             color: #fff;
             font-size: 1.5rem;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            transition: transform 0.4s;
+            transition: all 0.4s;
         }
         
         .footer__social-link:hover {
             transform: translateY(-0.25rem);
+            background: linear-gradient(135deg, var(--first-color), var(--first-color-alt));
+            box-shadow: 0 4px 12px var(--shadow-color);
         }
         
         .footer__copy {
@@ -608,19 +800,20 @@
             position: fixed;
             right: 1rem;
             bottom: -50%;
-            background-color: var(--first-color);
+            background: linear-gradient(135deg, var(--first-color), var(--first-color-alt));
             padding: 6px;
             display: inline-flex;
             border-radius: 0.25rem;
             color: #fff;
             font-size: 1.25rem;
-            box-shadow: 0 4px 12px hsla(228, 15%, 8%, 0.4);
+            box-shadow: 0 4px 12px var(--shadow-color);
             z-index: var(--z-tooltip);
-            transition: bottom 0.4s, transform 0.4s;
+            transition: all 0.4s;
         }
         
         .scrollup:hover {
             transform: translateY(-0.25rem);
+            box-shadow: 0 6px 20px var(--shadow-color);
         }
         
         .show-scroll {
@@ -637,6 +830,11 @@
             .contact__container {
                 grid-template-columns: 360px;
                 justify-content: center;
+            }
+            .contact__info {
+                max-width: 600px;
+                margin-inline: auto;
+                margin-bottom: 3rem;
             }
         }
         
@@ -669,7 +867,8 @@
                 order: 1;
             }
             .services__container,
-            .projects__container {
+            .projects__container,
+            .certifications__container {
                 grid-template-columns: repeat(2, 352px);
             }
         }
@@ -757,6 +956,11 @@
             .services__card {
                 padding: 3.5rem 2rem;
             }
+            .certifications__container {
+                grid-template-columns: repeat(3, 350px);
+                row-gap: 3rem;
+                padding-block: 2.5rem 4rem;
+            }
             .projects__container {
                 grid-template-columns: repeat(3, 350px);
                 row-gap: 3rem;
@@ -766,18 +970,21 @@
                 grid-template-columns: 680px;
                 padding-block: 2.5rem 2rem;
             }
+            .contact__info {
+                max-width: 900px;
+                gap: 2.5rem;
+            }
+            .contact__card {
+                padding: 2rem 2.5rem;
+            }
             .contact__form {
-                row-gap: 1.5rem;
+                padding: 4rem 3rem;
             }
-            .contact__group {
-                grid-template-columns: repeat(2, 1fr);
-                column-gap: 1.5rem;
+            .contact__form-div {
+                margin-bottom: 2.5rem;
             }
-            .contact__input {
-                padding: 1.5rem;
-            }
-            .contact__form textarea {
-                height: 20rem;
+            .contact__button {
+                margin-top: 1.5rem;
             }
             .footer {
                 padding-block: 4.5rem 4rem;
@@ -827,6 +1034,9 @@
                         <a href="#projects" class="nav__link">Projects</a>
                     </li>
                     <li class="nav__item">
+                        <a href="#certifications" class="nav__link">Certifications</a>
+                    </li>
+                    <li class="nav__item">
                         <a href="#contact" class="nav__link">Contact</a>
                     </li>
                 </ul>
@@ -864,17 +1074,17 @@
                         <a href="#contact" class="button">Let's Talk</a>
                     </div>
 
-                    <div class="home__social">
-                        <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="home__social-link">
+                    <div class="footer__social">
+                        <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="footer__social-link">
                             <i class="ri-article-line"></i>
                         </a>
-                        <a href="https://www.kaggle.com/stellamarries" target="_blank" class="home__social-link">
+                        <a href="https://www.kaggle.com/stellamarries" target="_blank" class="footer__social-link">
                             <i class="ri-bar-chart-box-line"></i>
                         </a>
-                        <a href="https://github.com/stella160" target="_blank" class="home__social-link">
+                        <a href="https://github.com/Stellamarries-Syombua" target="_blank" class="footer__social-link">
                             <i class="ri-github-fill"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" class="home__social-link">
+                        <a href="https://www.linkedin.com/in/stellamarries-syombua/" target="_blank" class="footer__social-link">
                             <i class="ri-linkedin-box-fill"></i>
                         </a>
                     </div>
@@ -1156,6 +1366,35 @@
             </div>
         </section>
 
+        <!--==================== CERTIFICATIONS ====================-->
+        <section class="certifications section" id="certifications">
+            <h3 class="section__subtitle">
+                My <span>Certifications</span>
+            </h3>
+
+            <h2 class="section__title">
+                Certifications & Achievements
+            </h2>
+
+            <div class="certifications__container container grid">
+                <article class="certifications__card">
+                    <img src="assets/img/cert1.jpg" alt="Certification 1" class="certifications__img">
+                </article>
+
+                <article class="certifications__card">
+                    <img src="assets/img/cert2.jpg" alt="Certification 2" class="certifications__img">
+                </article>
+
+                <article class="certifications__card">
+                    <img src="assets/img/cert3.jpg" alt="Certification 3" class="certifications__img">
+                </article>
+
+                <article class="certifications__card">
+                    <img src="assets/img/cert4.png" alt="Certification 4" class="certifications__img">
+                </article>
+            </div>
+        </section>
+
         <!--==================== CONTACT ====================-->
         <section class="contact section" id="contact">
             <h3 class="section__subtitle">
@@ -1166,27 +1405,78 @@
                 Contact Me
             </h2>
 
+            <p class="contact__description">
+                Have a project in mind or need help with data analysis? I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.
+            </p>
+
+            <div class="contact__info">
+                <div class="contact__card">
+                    <i class="ri-mail-line contact__card-icon"></i>
+                    <h3 class="contact__card-title">Email</h3>
+                    <a href="mailto:stellamarriessyombua@gmail.com" class="contact__card-link">
+                        stellamarriessyombua@gmail.com
+                    </a>
+                </div>
+
+                <div class="contact__card">
+                    <i class="ri-linkedin-box-fill contact__card-icon"></i>
+                    <h3 class="contact__card-title">LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" class="contact__card-link">
+                        Connect with me
+                    </a>
+                </div>
+
+                <div class="contact__card">
+                    <i class="ri-github-fill contact__card-icon"></i>
+                    <h3 class="contact__card-title">GitHub</h3>
+                    <a href="https://github.com/stella160" target="_blank" class="contact__card-link">
+                        @stella160
+                    </a>
+                </div>
+
+                <div class="contact__card">
+                    <i class="ri-article-line contact__card-icon"></i>
+                    <h3 class="contact__card-title">ORCID</h3>
+                    <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="contact__card-link">
+                        View Publications
+                    </a>
+                </div>
+            </div>
+
             <div class="contact__container container grid">
                 <form action="https://formsubmit.co/stellamarriessyombua@gmail.com" method="POST" class="contact__form" id="contact-form">
                     <input type="hidden" name="_subject" value="New Message From Portfolio">
                     <input type="hidden" name="_template" value="table">
 
-                    <div class="contact__group">
-                        <input type="text" name="name" required placeholder="Enter your name" class="contact__input">
-                        <input type="email" name="email" required placeholder="Enter your email" class="contact__input">
+                    <div class="contact__form-div">
+                        <input type="text" name="name" required class="contact__form-input" placeholder=" ">
+                        <label class="contact__form-tag">Full Name</label>
                     </div>
 
-                    <div class="contact__group">
-                        <input type="tel" name="phone" placeholder="Mobile Number" class="contact__input">
-                        <input type="text" name="subject" required placeholder="Email Subject" class="contact__input">
+                    <div class="contact__form-div">
+                        <input type="email" name="email" required class="contact__form-input" placeholder=" ">
+                        <label class="contact__form-tag">Email Address</label>
                     </div>
 
-                    <textarea name="message" required placeholder="Your Message" class="contact__input"></textarea>
+                    <div class="contact__form-div">
+                        <input type="tel" name="phone" class="contact__form-input" placeholder=" ">
+                        <label class="contact__form-tag">Phone Number (Optional)</label>
+                    </div>
+
+                    <div class="contact__form-div">
+                        <input type="text" name="subject" required class="contact__form-input" placeholder=" ">
+                        <label class="contact__form-tag">Subject</label>
+                    </div>
+
+                    <div class="contact__form-div contact__form-area">
+                        <textarea name="message" required class="contact__form-input" placeholder=" "></textarea>
+                        <label class="contact__form-tag">Your Message</label>
+                    </div>
 
                     <p class="contact__message" id="contact-message"></p>
 
                     <button type="submit" class="button contact__button">
-                        Send Message
+                        Send Message <i class="ri-send-plane-line"></i>
                     </button>
                 </form>
             </div>
@@ -1203,21 +1493,6 @@
                 <h2 class="footer__education">
                     Biostatistician | Data Analyst
                 </h2>
-            </div>
-
-            <div class="footer__social">
-                <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="footer__social-link">
-                    <i class="ri-article-line"></i>
-                </a>
-                <a href="https://www.kaggle.com/stellamarries" target="_blank" class="footer__social-link">
-                    <i class="ri-bar-chart-box-line"></i>
-                </a>
-                <a href="https://github.com/stella160" target="_blank" class="footer__social-link">
-                    <i class="ri-github-fill"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" class="footer__social-link">
-                    <i class="ri-linkedin-box-fill"></i>
-                </a>
             </div>
 
             <span class="footer__copy">
@@ -1312,7 +1587,7 @@
         sr.reveal(`.about__image, .skills__content`, {
             origin: 'right'
         })
-        sr.reveal(`.services__card, .projects__card`, {
+        sr.reveal(`.services__card, .projects__card, .certifications__card`, {
             interval: 100
         })
 
