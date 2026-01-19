@@ -5,1022 +5,1326 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stella Syombua - Portfolio</title>
-    <!-- Font Awesome for ORCID and Kaggle icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Boxicons for GitHub and LinkedIn -->
+
+    <!-- Remixicons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Boxicons for additional icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Your CSS file -->
-    <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
+        /*=============== GOOGLE FONTS ===============*/
+        
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+        /*=============== VARIABLES CSS ===============*/
+        
          :root {
-            --bg-color: #f8f9fa;
-            --second-bg-color: #e9ecef;
-            --text-color: #212529;
-            --main-color: #3d52a0;
-            --sub1-color: #7091e6;
-            --sub2-color: #adbbda;
-            --accent-color: #4a6fc0;
+            --header-height: 3.5rem;
+            /*========== Colors ==========*/
+            --hue: 224;
+            --first-color: hsl(224, 89%, 60%);
+            --first-color-alt: hsl(224, 56%, 35%);
+            --title-color: hsl(228, 8%, 15%);
+            --text-color: hsl(228, 8%, 25%);
+            --body-color: hsl(0, 0%, 95%);
+            --container-color: hsl(0, 0%, 100%);
+            /*========== Font and typography ==========*/
+            --body-font: 'Poppins', sans-serif;
+            --biggest-font-size: 2rem;
+            --bigger-font-size: 1.25rem;
+            --h1-font-size: 1.5rem;
+            --h2-font-size: 1.25rem;
+            --h3-font-size: 1rem;
+            --normal-font-size: 0.938rem;
+            --small-font-size: 0.813rem;
+            --smaller-font-size: 0.75rem;
+            /*========== Font weight ==========*/
+            --font-regular: 400;
+            --font-medium: 500;
+            --font-semi-bold: 600;
+            /*========== z index ==========*/
+            --z-tooltip: 10;
+            --z-fixed: 100;
         }
+        /*========== Responsive typography ==========*/
+        
+        @media screen and (min-width: 1152px) {
+             :root {
+                --biggest-font-size: 4rem;
+                --bigger-font-size: 2rem;
+                --h1-font-size: 2.25rem;
+                --h2-font-size: 1.5rem;
+                --h3-font-size: 1.25rem;
+                --normal-font-size: 1rem;
+                --small-font-size: 0.875rem;
+                --smaller-font-size: 0.813rem;
+            }
+        }
+        /*=============== BASE ===============*/
         
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        html {
             scroll-behavior: smooth;
-            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background: var(--bg-color);
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            background-color: var(--body-color);
             color: var(--text-color);
-            line-height: 1.6;
         }
         
-        section {
-            min-height: 100vh;
-            padding: 8rem 9% 4rem;
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--title-color);
+            font-weight: var(--font-medium);
         }
+        
+        ul {
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /*=============== REUSABLE CSS CLASSES ===============*/
         
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1120px;
+            margin-inline: 1.5rem;
         }
-        /* Header */
+        
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .section {
+            padding-block: 5rem 2rem;
+        }
+        
+        .section__title,
+        .section__subtitle {
+            text-align: center;
+            color: var(--title-color);
+            font-weight: var(--font-semi-bold);
+        }
+        
+        .section__title {
+            font-size: var(--h1-font-size);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section__subtitle {
+            font-size: var(--small-font-size);
+            margin-bottom: 0.25rem;
+        }
+        
+        .section__subtitle span {
+            color: var(--first-color);
+        }
+        
+        .main {
+            overflow: hidden;
+        }
+        /*=============== HEADER & NAV ===============*/
         
         .header {
             position: fixed;
+            width: 100%;
+            background-color: var(--container-color);
             top: 0;
             left: 0;
-            width: 100%;
-            padding: 1.5rem 9%;
-            background: rgba(173, 187, 218, 0.95);
-            backdrop-filter: blur(10px);
+            z-index: var(--z-fixed);
+        }
+        
+        .nav {
+            height: var(--header-height);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            transition: 0.3s;
         }
         
-        .header.sticky {
-            padding: 1rem 9%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .nav__logo {
+            color: var(--title-color);
+            font-weight: var(--font-medium);
         }
         
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-color);
+        .nav__logo span {
+            color: var(--first-color);
         }
         
-        .logo span {
-            color: var(--main-color);
-        }
-        
-        .navbar {
-            display: flex;
-            gap: 2.5rem;
-        }
-        
-        .navbar a {
-            font-size: 1.6rem;
-            color: var(--text-color);
-            transition: 0.3s;
-            font-weight: 500;
-        }
-        
-        .navbar a:hover,
-        .navbar a.active {
-            color: var(--main-color);
-        }
-        
-        #menu-icon {
-            font-size: 3rem;
-            color: var(--text-color);
+        .nav__toggle,
+        .nav__close {
+            display: inline-flex;
+            font-size: 1.25rem;
+            color: var(--title-color);
             cursor: pointer;
-            display: none;
         }
-        /* Home Section */
+        /* Navigation for mobile devices */
+        
+        @media screen and (max-width: 1023px) {
+            .nav__menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                background-color: hsla(0, 0%, 10%, 0.3);
+                width: 75%;
+                height: 100%;
+                padding: 4.5rem 0 0 3rem;
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                transition: right 0.4s;
+            }
+        }
+        
+        .nav__list {
+            display: flex;
+            flex-direction: column;
+            row-gap: 3rem;
+        }
+        
+        .nav__link {
+            color: var(--title-color);
+            font-weight: var(--font-medium);
+            transition: color 0.4s;
+        }
+        
+        .nav__link:hover {
+            color: var(--first-color);
+        }
+        
+        .nav__close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+        }
+        /* Show menu */
+        
+        .show-menu {
+            right: 0;
+        }
+        /* Add blur to header */
+        
+        .blur-header {
+            background-color: transparent;
+        }
+        
+        .blur-header::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: hsla(0, 0%, 10%, 0.3);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        /* Active link */
+        
+        .active-link {
+            color: var(--first-color);
+        }
+        /*=============== HOME ===============*/
         
         .home {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
+            background-color: var(--container-color);
         }
         
-        .home-content {
-            max-width: 600px;
+        .home__container {
+            padding-top: 2rem;
+            row-gap: 2.5rem;
         }
         
-        .home-content h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-        }
-        
-        .home-content h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--main-color);
-        }
-        
-        .home-content p {
-            font-size: 1.6rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .home-content span {
-            color: var(--sub1-color);
-            font-weight: 600;
-        }
-        
-        .social-media {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .social-media a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 4.5rem;
-            height: 4.5rem;
-            background: transparent;
-            border: 2px solid var(--sub1-color);
-            border-radius: 50%;
-            font-size: 2.5rem;
-            color: var(--sub1-color);
-            transition: 0.3s;
-        }
-        
-        .social-media a:hover {
-            background: var(--sub1-color);
-            color: #fff;
-            box-shadow: 0 0 15px var(--sub1-color);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: var(--sub1-color);
-            color: #fff;
-            font-size: 1.6rem;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: 0.3s;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn:hover {
-            background: var(--main-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .home-img {
-            max-width: 450px;
-        }
-        
-        .home-img img {
-            width: 100%;
-            border-radius: 50%;
-            box-shadow: 0 0 25px var(--sub1-color);
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-        /* About Section */
-        
-        .about {
-            background: var(--second-bg-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5rem;
-        }
-        
-        .about-img {
-            flex: 1;
-            max-width: 400px;
-        }
-        
-        .about-img img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-content {
-            flex: 1;
-        }
-        
-        .heading {
-            font-size: 4rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        .heading span {
-            color: var(--main-color);
-        }
-        
-        .about-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--main-color);
-        }
-        
-        .about-content p {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-        
-        .about-content span {
-            color: var(--main-color);
-            font-weight: 600;
-        }
-        /* Services Section */
-        
-        .services {
-            padding: 8rem 0;
-        }
-        
-        .services-container {
+        .home__content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            row-gap: 2rem;
         }
         
-        .services-box {
-            background: var(--second-bg-color);
-            padding: 3rem 2rem;
-            border-radius: 20px;
+        .home__data {
             text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         
-        .services-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        .home__subtitle,
+        .home__education {
+            font-size: var(--bigger-font-size);
         }
         
-        .services-box i {
-            font-size: 4.5rem;
-            color: var(--sub1-color);
-            margin-bottom: 2rem;
-            background: var(--bg-color);
-            width: 80px;
-            height: 80px;
+        .home__subtitle span {
+            color: var(--first-color);
+        }
+        
+        .home__title {
+            font-size: var(--biggest-font-size);
+            font-weight: var(--font-semi-bold);
+        }
+        
+        .home__description {
+            margin-block: 1rem 1.5rem;
+        }
+        
+        .home__social {
             display: flex;
-            align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            column-gap: 1.25rem;
         }
         
-        .services-box h3 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--main-color);
-        }
-        
-        .services-box p {
+        .home__social-link {
+            display: flex;
+            background: var(--container-color);
+            padding: 0.5rem;
+            color: var(--first-color);
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            transition: transform 0.4s;
+        }
+        
+        .home__social-link:hover {
+            transform: translateY(-0.25rem);
+        }
+        
+        .home__image {
+            justify-self: center;
+        }
+        
+        .home__blob {
+            width: 320px;
+            fill: var(--first-color);
+            filter: drop-shadow(0 12px 12px hsla(var(--hue), 100%, 40%, 0.2));
+        }
+        /*=============== BUTTON ===============*/
+        
+        .button {
+            display: inline-block;
+            background-color: var(--first-color);
+            padding: 1rem 1.75rem;
+            border-radius: 0.5rem;
+            color: #fff;
+            font-weight: var(--font-medium);
+            transition: box-shadow 0.4s;
+        }
+        
+        .button:hover {
+            box-shadow: 0 8px 24px hsla(var(--hue), 100%, 40%, 0.25);
+        }
+        /*=============== ABOUT ===============*/
+        
+        .about__container {
+            row-gap: 2.5rem;
+        }
+        
+        .about__data {
             text-align: center;
         }
         
-        .services-features {
-            text-align: left;
-            width: 100%;
-            padding: 0 1.5rem;
+        .about__description {
+            margin-bottom: 2rem;
         }
         
-        .services-features li {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
+        .about__image {
+            justify-self: center;
         }
         
-        .services-features li i {
-            font-size: 1.6rem;
-            color: var(--main-color);
-            margin-right: 0.8rem;
-            width: auto;
-            height: auto;
-            background: none;
-            box-shadow: none;
+        .about__blob {
+            width: 320px;
         }
-        /* Projects Section */
+        
+        .about__blob path {
+            stroke: var(--first-color);
+        }
+        /*=============== SKILLS ===============*/
+        
+        .skills {
+            background-color: var(--container-color);
+        }
+        
+        .skills__container {
+            padding-bottom: 2rem;
+            row-gap: 3.5rem;
+        }
+        
+        .skills__data {
+            text-align: center;
+        }
+        
+        .skills__description {
+            margin-bottom: 2rem;
+        }
+        
+        .skills__content,
+        .skills__group {
+            display: grid;
+        }
+        
+        .skills__content {
+            grid-template-columns: repeat(2, max-content);
+            column-gap: 4rem;
+            justify-content: center;
+            align-items: baseline;
+        }
+        
+        .skills__group {
+            row-gap: 1rem;
+            list-style: decimal-leading-zero;
+        }
+        
+        .skills__item {
+            font-weight: var(--font-medium);
+            color: var(--title-color);
+        }
+        
+        .skills__item::marker {
+            color: var(--first-color);
+        }
+        /*=============== SERVICES ===============*/
+        
+        .services__container {
+            row-gap: 2rem;
+            padding-block: 1rem;
+        }
+        
+        .services__card {
+            text-align: center;
+            background-color: var(--container-color);
+            padding: 3rem 1.25rem;
+            border-radius: 1rem;
+            border: 2px solid transparent;
+            transition: border 0.4s;
+        }
+        
+        .services__icon {
+            display: block;
+            font-size: 4rem;
+            color: var(--first-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .services__title {
+            font-size: var(--h2-font-size);
+            margin-bottom: 1.5rem;
+        }
+        
+        .services__card:hover {
+            border: 2px solid var(--first-color);
+        }
+        /*=============== PROJECTS ===============*/
         
         .projects {
-            background: var(--second-bg-color);
-            padding: 8rem 0;
+            background-color: var(--container-color);
         }
         
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+        .projects__container {
+            row-gap: 2rem;
+            justify-content: center;
+            padding-block: 1rem;
         }
         
-        .project-box {
-            background: var(--bg-color);
-            border-radius: 20px;
+        .projects__card {
+            position: relative;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
+        }
+        
+        .projects__img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .projects__modal {
+            position: absolute;
+            left: 0;
+            bottom: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, hsla(var(--hue), 24%, 40%, 0.3) 0%, hsla(var(--hue), 24%, 4%, 1) 95%);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: bottom 0.4s;
+            padding: 1.5rem 1.5rem 2.5rem;
         }
         
-        .project-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        .projects__subtitle {
+            display: block;
+            color: var(--text-color);
+            font-size: var(--small-font-size);
+            margin-bottom: 0.25rem;
         }
         
-        .project-image {
-            height: 220px;
-            overflow: hidden;
+        .projects__title {
+            font-size: var(--h2-font-size);
+            margin-bottom: 0.75rem;
+            color: var(--title-color);
+        }
+        
+        .projects__button {
+            display: flex;
+            align-items: center;
+            column-gap: 0.5rem;
+            font-weight: var(--font-medium);
+            background-color: var(--first-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+        }
+        
+        .projects__button i {
+            font-size: 1.25rem;
+        }
+        
+        .projects__card:hover .projects__modal {
+            bottom: 0;
+        }
+        /*=============== CONTACT ===============*/
+        
+        .contact__container {
+            padding-top: 1rem;
+        }
+        
+        .contact__form,
+        .contact__group {
+            display: grid;
+            row-gap: 1rem;
+        }
+        
+        .contact__form {
             position: relative;
         }
         
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
+        .contact__input {
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            background-color: var(--container-color);
+            color: var(--title-color);
+            border: 2px solid var(--text-color);
         }
         
-        .project-box:hover .project-image img {
-            transform: scale(1.1);
-        }
-        
-        .project-content {
-            padding: 2.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .project-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--main-color);
-        }
-        
-        .project-content p {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-        
-        .project-content .description {
-            background: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-content .interpretation {
-            background: #e6f2ff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-content h4 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
-            color: var(--main-color);
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .project-tech span {
-            background: var(--sub2-color);
+        .contact__input::placeholder {
             color: var(--text-color);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 1.3rem;
-            font-weight: 500;
         }
         
-        .project-links {
-            display: flex;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-        
-        .project-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--main-color);
-            font-size: 1.5rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        
-        .project-links a:hover {
-            color: var(--sub1-color);
-        }
-        /* Contact Section */
-        
-        .contact {
-            padding: 8rem 0;
-        }
-        
-        .contact p {
-            font-size: 1.6rem;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-        
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--second-bg-color);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .input-box {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .input-box input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1.5rem;
-            font-size: 1.6rem;
-            color: var(--text-color);
-            background: var(--bg-color);
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .contact-form textarea {
+        .contact__form textarea {
+            height: 11rem;
             resize: none;
-            height: 180px;
             margin-bottom: 2rem;
         }
-        /* Footer */
+        
+        .contact__button {
+            justify-self: center;
+            cursor: pointer;
+        }
+        
+        .contact__message {
+            position: absolute;
+            left: 0;
+            bottom: 4.5rem;
+            font-size: var(--small-font-size);
+            color: var(--title-color);
+        }
+        /*=============== FOOTER ===============*/
         
         .footer {
-            background: var(--sub2-color);
-            padding: 3rem 9%;
+            background-color: var(--container-color);
+            padding-block: 3.5rem 2rem;
+        }
+        
+        .footer__container {
+            row-gap: 2rem;
             text-align: center;
         }
         
-        .footer-text {
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
+        .footer__title {
+            font-size: var(--h1-font-size);
+            font-weight: var(--font-semi-bold);
+            margin-bottom: 0.25rem;
         }
         
-        .footer-iconTop a {
-            display: inline-flex;
+        .footer__title span {
+            color: var(--first-color);
+        }
+        
+        .footer__education {
+            font-size: var(--normal-font-size);
+        }
+        
+        .footer__social {
+            display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            background: var(--main-color);
-            border-radius: 10px;
-            transition: 0.3s;
+            column-gap: 1.25rem;
         }
         
-        .footer-iconTop a:hover {
-            background: var(--sub1-color);
-            box-shadow: 0 0 15px var(--main-color);
-        }
-        
-        .footer-iconTop a i {
-            font-size: 2.4rem;
+        .footer__social-link {
+            display: flex;
+            background: var(--first-color-alt);
+            padding: 0.5rem;
             color: #fff;
-        }
-        /* Responsive Design */
-        
-        @media (max-width: 1200px) {
-            html {
-                font-size: 55%;
-            }
+            font-size: 1.5rem;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            transition: transform 0.4s;
         }
         
-        @media (max-width: 991px) {
-            section {
-                padding: 8rem 5% 4rem;
+        .footer__social-link:hover {
+            transform: translateY(-0.25rem);
+        }
+        
+        .footer__copy {
+            font-size: var(--smaller-font-size);
+            margin-top: 2rem;
+        }
+        /*=============== SCROLL BAR ===============*/
+        
+         ::-webkit-scrollbar {
+            width: 0.6rem;
+            border-radius: 0.5rem;
+            background-color: hsl(228, 12%, 25%);
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background-color: hsl(228, 8%, 35%);
+            border-radius: 0.5rem;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background-color: hsl(228, 8%, 45%);
+        }
+        /*=============== SCROLL UP ===============*/
+        
+        .scrollup {
+            position: fixed;
+            right: 1rem;
+            bottom: -50%;
+            background-color: var(--first-color);
+            padding: 6px;
+            display: inline-flex;
+            border-radius: 0.25rem;
+            color: #fff;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px hsla(228, 15%, 8%, 0.4);
+            z-index: var(--z-tooltip);
+            transition: bottom 0.4s, transform 0.4s;
+        }
+        
+        .scrollup:hover {
+            transform: translateY(-0.25rem);
+        }
+        
+        .show-scroll {
+            bottom: 3rem;
+        }
+        /*=============== BREAKPOINTS ===============*/
+        
+        @media screen and (min-width: 576px) {
+            .home__container,
+            .about__container,
+            .skills__container,
+            .services__container,
+            .projects__container,
+            .contact__container {
+                grid-template-columns: 360px;
+                justify-content: center;
             }
-            .header {
-                padding: 1.5rem 5%;
+        }
+        
+        @media screen and (min-width: 768px) {
+            .nav__menu {
+                width: 55%;
             }
-            .home {
-                flex-direction: column;
-                text-align: center;
-                gap: 3rem;
+            .home__container,
+            .about__container,
+            .skills__container {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
             }
-            .home-content {
-                order: 2;
+            .home__data,
+            .about__data,
+            .skills__data,
+             :is(.about__data,
+            .skills__data) :is(.section__subtitle,
+            .section__title) {
+                text-align: initial;
             }
-            .home-img {
+            .home__social {
+                justify-content: initial;
+            }
+            .home__blob,
+            .about__blob {
+                width: 400px;
+            }
+            .about__data {
                 order: 1;
             }
-            .about {
-                flex-direction: column;
-                text-align: center;
-            }
-            .services-container {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .services__container,
+            .projects__container {
+                grid-template-columns: repeat(2, 352px);
             }
         }
         
-        @media (max-width: 768px) {
-            #menu-icon {
-                display: block;
+        @media screen and (min-width: 1023px) {
+            .section {
+                padding-block: 7rem 2rem;
             }
-            .navbar {
-                position: absolute;
-                top: 100%;
-                left: -100%;
-                width: 100%;
-                padding: 1rem 5%;
-                background: var(--sub2-color);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                transition: 0.3s;
-                flex-direction: column;
+            .section__subtitle {
+                font-size: var(--normal-font-size);
             }
-            .navbar.active {
-                left: 0;
+            .nav {
+                height: calc(var(--header-height) + 1.5rem);
             }
-            .navbar a {
-                display: block;
-                font-size: 2rem;
-                margin: 2rem 0;
+            .nav__close,
+            .nav__toggle {
+                display: none;
             }
-            .home-content h1 {
-                font-size: 3.5rem;
+            .nav__list {
+                flex-direction: row;
+                column-gap: 3rem;
             }
-            .home-content h2 {
-                font-size: 2.2rem;
+            .nav__menu {
+                width: initial;
             }
-            .heading {
-                font-size: 3.2rem;
-            }
-            .projects-container {
-                grid-template-columns: 1fr;
+            .blur-header {
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
             }
         }
         
-        @media (max-width: 450px) {
-            html {
-                font-size: 50%;
+        @media screen and (min-width: 1152px) {
+            .container {
+                margin-inline: auto;
             }
-            .home-img {
-                max-width: 300px;
+            .home__container {
+                grid-template-columns: 455px 550px;
+                column-gap: 7rem;
+                padding-block: 2rem 3rem;
             }
-            .about-img {
-                max-width: 300px;
+            .home__blob {
+                width: 550px;
             }
-            .input-box {
-                grid-template-columns: 1fr;
+            .home__content {
+                row-gap: 4.5rem;
+            }
+            .home__description {
+                margin-block: 1.5rem 2.5rem;
+            }
+            .home__social {
+                column-gap: 1.5rem;
+            }
+            .about__container {
+                grid-template-columns: 550px 460px;
+                column-gap: 4.5rem;
+                padding-bottom: 1rem;
+            }
+            .about__blob {
+                width: 550px;
+            }
+            .about__description {
+                margin-bottom: 3rem;
+            }
+            .skills__container {
+                grid-template-columns: 340px 425px;
+                column-gap: 10rem;
+                padding-bottom: 4rem;
+            }
+            .skills__description {
+                margin-bottom: 3rem;
+            }
+            .skills__content {
+                column-gap: 8rem;
+            }
+            .skills__group {
+                row-gap: 1.5rem;
+            }
+            .skills__item {
+                font-size: var(--h3-font-size);
+            }
+            .services__container {
+                grid-template-columns: repeat(3, 352px);
+                padding-block: 2.5rem 4rem;
+            }
+            .services__card {
+                padding: 3.5rem 2rem;
+            }
+            .projects__container {
+                grid-template-columns: repeat(3, 350px);
+                row-gap: 3rem;
+                padding-block: 2.5rem 4rem;
+            }
+            .contact__container {
+                grid-template-columns: 680px;
+                padding-block: 2.5rem 2rem;
+            }
+            .contact__form {
+                row-gap: 1.5rem;
+            }
+            .contact__group {
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 1.5rem;
+            }
+            .contact__input {
+                padding: 1.5rem;
+            }
+            .contact__form textarea {
+                height: 20rem;
+            }
+            .footer {
+                padding-block: 4.5rem 4rem;
+            }
+            .footer__container {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: center;
+                text-align: initial;
+            }
+            .footer__title {
+                font-size: var(--bigger-font-size);
+            }
+            .footer__social {
+                column-gap: 1.5rem;
+            }
+            .footer__copy {
+                margin: 0;
+                justify-self: flex-end;
+            }
+            .scrollup {
+                right: 3rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <a href="#" class="logo">Stella<span>Syombua</span></a>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#home" class="nav__logo">
+                Stella <span>Syombua</span>
+            </a>
 
-        <i class='bx bx-menu-alt-left' id="menu-icon"></i>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link">Services</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#projects" class="nav__link">Projects</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
 
-        <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
         </nav>
     </header>
 
-    <!-- Home Section -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h2>Hi, I'm Stella!</h2>
-            <h1>I'm a <span class="multiple-text"></span></h1>
-            <p>I'm also a PK/PD modeling enthusiast passionate about Public Health and Cancer Research</p>
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__content">
+                    <div class="home__data">
+                        <h3 class="home__subtitle">
+                            Hello👋, I'm <span>Stella!</span>
+                        </h3>
 
-            <div class="social-media">
-                <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" title="ORCID">
-                    <i class="fab fa-orcid"></i>
-                </a>
-                <a href="https://www.kaggle.com/stellamarries" target="_blank" title="Kaggle">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a href="https://github.com/stella160" target="_blank" title="GitHub">
-                    <i class="bx bxl-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" title="LinkedIn">
-                    <i class="bx bxl-linkedin"></i>
-                </a>
-            </div>
+                        <h1 class="home__title">
+                            I'm a <span class="multiple-text"></span>
+                        </h1>
 
-            <a href="#projects" class="btn">Explore My Work</a>
-        </div>
-
-        <div class="home-img">
-            <img src="Images/portfolio_pic.jpg" alt="Stella Syombua">
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="Images/about me.jpg" alt="About Stella">
-        </div>
-
-        <div class="about-content">
-            <h2 class="heading">About <span>Me</span></h2>
-            <h3>Biostatistician | Data Analyst</h3>
-            <p>I'm Stellamarries Syombua, a Biostatistician and Data Analyst who enjoys making sense of data and turning it into stories that matter. Most of my work has been in public health and clinical research, where I focus on keeping data clean, applying
-                the right methods, and helping teams understand what the numbers are really saying.</p>
-
-            <p>I'm especially interested in how data can guide better decisions in healthcare and beyond. Alongside my current projects, I'm learning more about machine learning, AI, survival analysis, predictive modelling, advanced statistical methods and
-                time series analysis, skills that I believe will make my work even more practical and impactful.</p>
-
-            <p>At the end of the day, I see myself as both a problem-solver and a learner, always curious about new ways data can be used to improve lives.</p>
-
-            <a href="Documents/Updated_Cv.pdf" class="btn">Download CV</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <h2 class="heading">My <span>Services</span></h2>
-
-        <div class="services-container">
-            <div class="services-box">
-                <i class='bx bx-brush-alt'></i>
-                <h3>Data Cleaning & Preparation</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Handling missing data, inconsistencies, and errors</li>
-                    <li><i class='bx bx-check'></i> Preparing datasets for analysis and modeling</li>
-                    <li><i class='bx bx-check'></i> Ensuring high standards of data quality and reliability</li>
-                </div>
-            </div>
-
-            <div class="services-box">
-                <i class='bx bx-stats'></i>
-                <h3>Statistical Analysis & Modeling</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Applying statistical methods to answer research questions</li>
-                    <li><i class='bx bx-check'></i> Building and validating predictive and survival models</li>
-                    <li><i class='bx bx-check'></i> Conducting hypothesis testing and comparative studies</li>
-                </div>
-            </div>
-
-            <div class="services-box">
-                <i class='bx bx-line-chart'></i>
-                <h3>Data Visualization & Reporting</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Creating clear, insightful visualizations</li>
-                    <li><i class='bx bx-check'></i> Developing reports that translate technical results</li>
-                    <li><i class='bx bx-check'></i> Communicating findings to diverse audiences</li>
-                </div>
-            </div>
-
-            <div class="services-box">
-                <i class='bx bx-healthcare'></i>
-                <h3>Public Health & Clinical Research</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Designing and analyzing clinical studies</li>
-                    <li><i class='bx bx-check'></i> Supporting evidence-based decision-making</li>
-                    <li><i class='bx bx-check'></i> Interpreting data for policy and publications</li>
-                </div>
-            </div>
-
-            <div class="services-box">
-                <i class='bx bx-brain'></i>
-                <h3>Machine Learning & AI</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Exploring ML/AI in healthcare and research</li>
-                    <li><i class='bx bx-check'></i> Working with predictive analytics and classification</li>
-                    <li><i class='bx bx-check'></i> Integrating modern techniques into real-world projects</li>
-                </div>
-            </div>
-
-            <div class="services-box">
-                <i class='bx bx-dna'></i>
-                <h3>Biostatistics</h3>
-                <div class="services-features">
-                    <li><i class='bx bx-check'></i> Biostatistics consultation</li>
-                    <li><i class='bx bx-check'></i> Advanced statistical analysis</li>
-                    <li><i class='bx bx-check'></i> Epidemiological study design</li>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="heading">Latest <span>Projects</span></h2>
-
-        <div class="projects-container">
-            <!-- Project 1 -->
-            <div class="project-box">
-                <div class="project-image">
-                    <img src="Images/Esophageal.png" alt="Esophageal Cancer Research">
-                </div>
-                <div class="project-content">
-                    <h3>Esophageal Cancer in Garissa County</h3>
-                    <div class="project-tech">
-                        <span>R</span>
-                        <span>SPSS</span>
-                        <span>Statistical Modeling</span>
-                    </div>
-                    <div class="description">
-                        <h4>Description</h4>
-                        <p>A comprehensive study examining sociodemographic and behavioral factors associated with esophageal cancer in Garissa County, Kenya. The research included patient medical record analysis, and statistical modeling to identify key
-                            risk factors.</p>
-                    </div>
-                    <div class="interpretation">
-                        <h4>Interpretation</h4>
-                        <p>The study revealed significant associations between esophageal cancer and tobacco use (p = 0.022), hypertension (p = 0.025), diabetes mellitus (p = 0.028) and HIV status (p = 0.029). Additionally, a family history of cancer was
-                            associated with esophageal cancer (p = 0.009). There was no significant association between sociodemographic factors such as age, marital status, or education level. However, the majority of the study participants lacked formal
-                            education.
-
+                        <p class="home__description">
+                            I'm also a PK/PD modeling enthusiast passionate about Public Health and Cancer Research. Get smart with your data! Need help making sense of your numbers? I've got you covered with easy-to-understand solutions and top-notch work.
                         </p>
+
+                        <a href="#contact" class="button">Let's Talk</a>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/stella160/Esophageal-cancer"><i class='bx bxl-github'></i> Code</a>
+
+                    <div class="home__social">
+                        <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="home__social-link">
+                            <i class="ri-article-line"></i>
+                        </a>
+                        <a href="https://www.kaggle.com/stellamarries" target="_blank" class="home__social-link">
+                            <i class="ri-bar-chart-box-line"></i>
+                        </a>
+                        <a href="https://github.com/stella160" target="_blank" class="home__social-link">
+                            <i class="ri-github-fill"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" class="home__social-link">
+                            <i class="ri-linkedin-box-fill"></i>
+                        </a>
                     </div>
+                </div>
+
+                <div class="home__image">
+                    <svg class="home__blob" viewBox="0 0 550 591" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="maskBlob" mask-type="alpha">
+                            <path d="M263 47.1782C270.426 42.891 279.574 42.891 287 47.1782L501.157 
+                            170.822C508.583 175.109 513.157 183.032 513.157 191.606V438.894C513.157 
+                            447.468 508.583 455.391 501.157 459.678L287 583.322C279.574 587.609 270.426 
+                            587.609 263 583.322L48.843 459.678C41.4174 455.391 36.843 447.468 36.843 
+                            438.894V191.606C36.843 183.032 41.4174 175.109 48.843 170.822L263 47.1782Z"/>
+                        </mask>
+                        <g mask="url(#maskBlob)">
+                            <path d="M263 47.1782C270.426 42.891 279.574 42.891 287 47.1782L501.157 
+                            170.822C508.583 175.109 513.157 183.032 513.157 191.606V438.894C513.157 
+                            447.468 508.583 455.391 501.157 459.678L287 583.322C279.574 587.609 270.426 
+                            587.609 263 583.322L48.843 459.678C41.4174 455.391 36.843 447.468 36.843 
+                            438.894V191.606C36.843 183.032 41.4174 175.109 48.843 170.822L263 47.1782Z"/>
+                            
+                            <rect x="37" width="476" height="630" fill="url(#pattern0)"/>
+                        </g>
+                        
+                        <rect x="37" width="476" height="300" fill="url(#pattern1)"/>
+                        
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use href="#imageBlob" transform="matrix(0.00143057 0 0 0.00108108 0.0404062 0)"/>
+                            </pattern>
+                            
+                            <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use href="#imageBlob" transform="matrix(0.00143057 0 0 0.00226984 0.0404062 0)"/>
+                            </pattern>
+                            
+                            <image class="home__img" id="imageBlob" width="640" height="925" href="Images/portfolio_pic.jpg"/>
+                        </defs>
+                    </svg>
                 </div>
             </div>
+        </section>
 
-            <!-- Project 2 -->
-            <div class="project-box">
-                <div class="project-image">
-                    <img src="Images/Breast.png" alt="Breast Cancer Research">
-                </div>
-                <div class="project-content">
-                    <h3>Breast Cancer Subtypes in Meru County</h3>
-                    <div class="project-tech">
-                        <span>R</span>
-                        <span>Data Visualization</span>
-                    </div>
-                    <div class="description">
-                        <h4>Description</h4>
-                        <p>An analysis of sociodemographic and clinical correlates of breast cancer subtypes in Meru County, Kenya. The project involved collecting and analyzing patient data to identify patterns and correlations between cancer subtypes and
-                            various factors.</p>
-                    </div>
-                    <div class="interpretation">
-                        <h4>Interpretation</h4>
-                        <p>Significant associations were observed between breast cancer subtypes and occupation with farmers being the most represented occupational group (p = 0.002), HER2 status (p
-                            < 0.001), and the Ki-67 index (p=0 .044). Age, BMI, marital status, and receptor status (ER, PR) were not statistically associated with subtypes. </div>
-                                <div class="project-links">
+        <!--==================== ABOUT ====================-->
+        <section class="about section" id="about">
+            <div class="about__container container grid">
+                <div class="about__data">
+                    <h3 class="section__subtitle">
+                        My <span>Intro</span>
+                    </h3>
 
-                                    <a href="https://github.com/stella160/Meru-Breast-Cancer-Analysis"><i class='bx bxl-github'></i> Code</a>
-                                </div>
-                    </div>
-                </div>
+                    <h2 class="section__title">
+                        About Me
+                    </h2>
 
-                <!-- Project 3 -->
-                <div class="project-box">
-                    <div class="project-image">
-                        <img src="Images/Lung_Cancer.png" alt="Lung Cancer Research">
-                    </div>
-                    <div class="project-content">
-                        <h3>Lung Cancer Risk Factors</h3>
-                        <div class="project-tech">
-                            <span>R</span>
-                            <span>Machine Learning</span>
-                            <span>Statistical Analysis</span>
-                        </div>
-                        <div class="description">
-                            <h4>Description</h4>
-                            <p>Research focused on determining symptom interrelations and behavioral correlates of lung cancer risk. The study employed advanced statistical methods to analyze complex relationships between symptoms, behaviors, and cancer
-                                risk.
-                            </p>
-                        </div>
-                        <div class="interpretation">
-                            <h4>Interpretation</h4>
-                            <p>In my analysis of lung cancer data, I found that while smoking and certain lifestyle habits were associated with cancer risk, age (average difference, p = 0.18) and other demographic factors were less significant. Interestingly,
-                                predictive modeling revealed that allergy history and alcohol use were stronger indicators of lung cancer than smoking itself, with symptoms like wheezing and swallowing difficulties also contributing to risk patterns.
-                                Symptom clusters such as chest pain and shortness of breath often occurred together, suggesting underlying links, while smoking and alcohol appeared to influence cancer risk independently. Age distribution peaked between
-                                65–75 years, where most cases were diagnosed with cancer.</p>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/stella160/Binary_lung_cancer_analysis"><i class='bx bxl-github'></i> Code</a>
-                        </div>
-                    </div>
+                    <p class="about__description">
+                        I'm Stellamarries Syombua, a Biostatistician and Data Analyst who enjoys making sense of data and turning it into stories that matter. Most of my work has been in public health and clinical research, where I focus on keeping data clean, applying the right
+                        methods, and helping teams understand what the numbers are really saying.
+                    </p>
+
+                    <p class="about__description">
+                        I'm especially interested in how data can guide better decisions in healthcare and beyond. Alongside my current projects, I'm learning more about machine learning, AI, survival analysis, predictive modelling, advanced statistical methods and time series
+                        analysis, skills that I believe will make my work even more practical and impactful.
+                    </p>
+
+                    <a href="Documents/Updated_Cv.pdf" class="button">Download CV</a>
                 </div>
 
-                <!-- Project 4 -->
-                <div class="project-box">
-                    <div class="project-image">
-                        <img src="Images/Spatial.png" alt="Diabetes Research">
-                    </div>
-                    <div class="project-content">
-                        <h3>Spatial Modelling of Diabetes in Kenya</h3>
-                        <div class="project-tech">
-                            <span>R(sf)</span>
-                            <span>R(INLA)</span>
-                            <span>Spatial Analysis</span>
-                        </div>
-                        <div class="description">
-                            <h4>Description</h4>
-                            <p>A spatial analysis project examining diabetes prevalence patterns across Kenya. The study utilized geographic information systems (GIS) and statistical modeling to identify regional clusters and environmental correlates of
-                                diabetes distribution.
-                            </p>
-                        </div>
-                        <div class="interpretation">
-                            <h4>Interpretation</h4>
-                            <p>The analysis revealed significant geographic clustering of diabetes prevalence, with certain regions showing higher rates than others. These patterns were associated with socioeconomic factors, healthcare access, and lifestyle
-                                variables, informing targeted public health interventions.</p>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/stella160/Spatial_Modelling"><i class='bx bxl-github'></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-box">
-                    <div class="project-image">
-                        <img src="Images/Liver.png" alt="Liver Cancer Research">
-                    </div>
-                    <div class="project-content">
-                        <h3>Liver Cancer & Hepatitis Visualization</h3>
-                        <div class="project-tech">
-                            <span>R(ggplot2)</span>
-                            <span>Machine Learning</span>
-                            <span>Data Visualization</span>
-                        </div>
-                        <div class="description">
-                            <h4>Description</h4>
-                            <p>This study compared demographic, lifestyle, and clinical characteristics of liver cancer (HCC) and Hepatitis cohorts to identify risk factor differences. It standardized variables like age, education, smoking, alcohol use,
-                                and clinical conditions such as diabetes and hypertension. Visualizations and descriptive statistics provided insights into cohort profiles.
-
-                            </p>
-                        </div>
-                        <div class="interpretation">
-                            <h4>Interpretation</h4>
-                            <p>The visualizations revealed clear patterns in disease progression and demographic correlations, highlighting key risk factors and clinical markers. These insights support early detection strategies and personalized treatment
-                                approaches for at-risk populations.</p>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/stella160/Liver-HCC-_Analysis"><i class='bx bxl-github'></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-box">
-                    <div class="project-image">
-                        <img src="Images/Coffee.png" alt="Coffee Supply Chain Analysis">
-                    </div>
-                    <div class="project-content">
-                        <h3>Coffee Supply Chain Optimization</h3>
-                        <div class="project-tech">
-                            <span>Excel</span>
-                            <span>Data Analysis</span>
-                        </div>
-                        <div class="description">
-                            <h4>Description</h4>
-                            <p>An analysis of coffee supply chain data focusing on optimizing yield, enumerator performance, and farm practices. The project involved processing large datasets to identify efficiency improvements and best practices across
-                                the supply chain.</p>
-                        </div>
-                        <div class="interpretation">
-                            <h4>Interpretation</h4>
-                            <p>Limmu recorded the highest yield (438.23), over 120 units above Sidama B (312.25), while Yirgachefe trailed at 195.26, pointing to region-specific challenges. Yirgachefe and Sidama B favored organic fertilizer and intercropping,
-                                whereas Limmu led in disease-resistant varieties. Pruning was dominated by desuckering (428) and branch removal (419), with topping (287) ranking third, while other methods were minimal. Interestingly, higher adoption of
-                                sustainable practices did not always translate into higher yields, suggesting other influential factors.</p>
-                        </div>
-                        <div class="project-links">
-                            <a href="#"><i class='bx bx-link-external'></i> View Project</a>
-                        </div>
-                    </div>
+                <div class="about__image">
+                    <svg class="about__blob" viewBox="0 0 550 592" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="maskBorder" mask-type="alpha">
+                            <path d="M263 48.1782C270.426 43.891 279.574 43.891 287 48.1782L501.157 
+                            171.822C508.583 176.109 513.157 184.032 513.157 192.606V439.894C513.157 
+                            448.468 508.583 456.391 501.157 460.678L287 584.322C279.574 588.609 
+                            270.426 588.609 263 584.322L48.843 460.678C41.4174 456.391 36.843 448.468 36.843 
+                            439.894V192.606C36.843 184.032 41.4174 176.109 48.843 171.822L263 48.1782Z" fill="black"/>
+                        </mask>
+                        <g mask="url(#maskBorder)">
+                            <rect x="37" width="476" height="630" fill="url(#pattern2)"/>
+                            
+                            <path d="M285 51.6423L499.157 175.286C505.345 178.859 509.157 185.461 509.157 
+                            192.606V439.894C509.157 447.039 505.345 453.641 499.157 457.214L285 
+                            580.858C278.812 584.43 271.188 584.43 265 580.858L50.843 457.214C44.655 453.641 
+                            40.843 447.039 40.843 439.894V192.606C40.843 185.461 44.655 178.859 50.843 
+                            175.286L265 51.6423C271.188 48.0697 278.812 48.0696 285 51.6423Z" stroke="black" stroke-width="10"/>
+                        </g>
+                        
+                        <rect x="37" width="476" height="300" fill="url(#pattern3)"/>
+                        
+                        <defs>
+                            <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use href="#imageBorder" transform="matrix(0.00143057 0 0 0.00108108 0.0404062 0)"/>
+                            </pattern>
+                            
+                            <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use href="#imageBorder" transform="matrix(0.00143057 0 0 0.00226984 0.0404062 0)"/>
+                            </pattern>
+                            
+                            <image class="about__img" id="imageBorder" width="640" height="940" href="Images/about me.jpg"/>
+                        </defs>
+                    </svg>
                 </div>
             </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2 class="heading">Contact <span>Me!</span></h2>
-        <p>Are you interested in collaborating on a project or need assistance with data analysis, biostatistics, or Reporting? I'd love to hear from you! Feel free to reach out.</p>
+        <!--==================== SKILLS ====================-->
+        <section class="skills section">
+            <div class="skills__container container grid">
+                <div class="skills__data">
+                    <h3 class="section__subtitle">
+                        Favourite <span>Skills</span>
+                    </h3>
 
-        <form action="https://formsubmit.co/stellamarriessyombua@gmail.com" method="POST" class="contact-form">
-            <input type="hidden" name="_subject" value="New Message From Portfolio">
-            <input type="hidden" name="_template" value="table">
+                    <h2 class="section__title">
+                        My Skills
+                    </h2>
 
-            <div class="input-box">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
+                    <p class="skills__description">
+                        Explore my skills by viewing the projects that I have done
+                    </p>
+
+                    <a href="#projects" class="button">See Projects</a>
+                </div>
+
+                <div class="skills__content">
+                    <ol class="skills__group">
+                        <li class="skills__item">R Programming</li>
+                        <li class="skills__item">Python</li>
+                        <li class="skills__item">SPSS</li>
+                        <li class="skills__item">Statistical Modeling</li>
+                    </ol>
+
+                    <ol class="skills__group" start="5">
+                        <li class="skills__item">Microsoft Excel</li>
+                        <li class="skills__item">Data Visualization</li>
+                        <li class="skills__item">Machine Learning</li>
+                        <li class="skills__item">Clinical Research</li>
+                    </ol>
+                </div>
             </div>
-            <div class="input-box">
-                <input type="tel" name="phone" placeholder="Mobile Number">
-                <input type="text" name="subject" placeholder="Email Subject" required>
-            </div>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <input type="submit" value="Send Message" class="btn">
-        </form>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!--==================== SERVICES ====================-->
+        <section class="services section" id="services">
+            <h3 class="section__subtitle">
+                My <span>Services</span>
+            </h3>
+
+            <h2 class="section__title">
+                What I Do
+            </h2>
+
+            <div class="services__container container grid">
+                <article class="services__card">
+                    <i class="ri-brush-line services__icon"></i>
+                    <h2 class="services__title">Data Cleaning & Preparation</h2>
+                    <p class="services__description">
+                        Handling missing data, inconsistencies, and errors. Preparing datasets for analysis and modeling with high standards of data quality and reliability.
+                    </p>
+                </article>
+
+                <article class="services__card">
+                    <i class="ri-line-chart-line services__icon"></i>
+                    <h2 class="services__title">Statistical Analysis</h2>
+                    <p class="services__description">
+                        Applying statistical methods to answer research questions, building predictive models, and conducting hypothesis testing and comparative studies.
+                    </p>
+                </article>
+
+                <article class="services__card">
+                    <i class="ri-bar-chart-box-line services__icon"></i>
+                    <h2 class="services__title">Data Visualization</h2>
+                    <p class="services__description">
+                        Creating clear, insightful visualizations and developing reports that translate technical results to diverse audiences.
+                    </p>
+                </article>
+
+                <article class="services__card">
+                    <i class="ri-hospital-line services__icon"></i>
+                    <h2 class="services__title">Clinical Research</h2>
+                    <p class="services__description">
+                        Designing and analyzing clinical studies, supporting evidence-based decision-making, and interpreting data for policy and publications.
+                    </p>
+                </article>
+
+                <article class="services__card">
+                    <i class="ri-brain-line services__icon"></i>
+                    <h2 class="services__title">Machine Learning</h2>
+                    <p class="services__description">
+                        Exploring ML/AI in healthcare and research, working with predictive analytics and integrating modern techniques into real-world projects.
+                    </p>
+                </article>
+
+                <article class="services__card">
+                    <i class="ri-dna-line services__icon"></i>
+                    <h2 class="services__title">Biostatistics</h2>
+                    <p class="services__description">
+                        Biostatistics consultation, advanced statistical analysis, and epidemiological study design for public health research.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!--==================== PROJECTS ====================-->
+        <section class="projects section" id="projects">
+            <h3 class="section__subtitle">
+                My <span>Projects</span>
+            </h3>
+
+            <h2 class="section__title">
+                Recent Projects
+            </h2>
+
+            <div class="projects__container container grid">
+                <article class="projects__card">
+                    <img src="Images/Esophageal.png" alt="Esophageal Cancer" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">R | SPSS | Statistical Modeling</span>
+                        <h2 class="projects__title">Esophageal Cancer in Garissa County</h2>
+                        <a href="https://github.com/stella160/Esophageal-cancer" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <img src="Images/Breast.png" alt="Breast Cancer" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">R | Data Visualization</span>
+                        <h2 class="projects__title">Breast Cancer Subtypes in Meru County</h2>
+                        <a href="https://github.com/stella160/Meru-Breast-Cancer-Analysis" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <img src="Images/Lung_Cancer.png" alt="Lung Cancer" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">R | Machine Learning</span>
+                        <h2 class="projects__title">Lung Cancer Risk Factors Analysis</h2>
+                        <a href="https://github.com/stella160/Binary_lung_cancer_analysis" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <img src="Images/Spatial.png" alt="Spatial Analysis" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">R | Spatial Analysis</span>
+                        <h2 class="projects__title">Spatial Modelling of Diabetes in Kenya</h2>
+                        <a href="https://github.com/stella160/Spatial_Modelling" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <img src="Images/Liver.png" alt="Liver Cancer" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">R | ggplot2</span>
+                        <h2 class="projects__title">Liver Cancer & Hepatitis Visualization</h2>
+                        <a href="https://github.com/stella160/Liver-HCC-_Analysis" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="projects__card">
+                    <img src="Images/Coffee.png" alt="Coffee Analysis" class="projects__img">
+                    <div class="projects__modal">
+                        <span class="projects__subtitle">Excel | Data Analysis</span>
+                        <h2 class="projects__title">Coffee Supply Chain Optimization</h2>
+                        <a href="#" class="projects__button">
+                            View Demo <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!--==================== CONTACT ====================-->
+        <section class="contact section" id="contact">
+            <h3 class="section__subtitle">
+                Get In <span>Touch</span>
+            </h3>
+
+            <h2 class="section__title">
+                Contact Me
+            </h2>
+
+            <div class="contact__container container grid">
+                <form action="https://formsubmit.co/stellamarriessyombua@gmail.com" method="POST" class="contact__form" id="contact-form">
+                    <input type="hidden" name="_subject" value="New Message From Portfolio">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="contact__group">
+                        <input type="text" name="name" required placeholder="Enter your name" class="contact__input">
+                        <input type="email" name="email" required placeholder="Enter your email" class="contact__input">
+                    </div>
+
+                    <div class="contact__group">
+                        <input type="tel" name="phone" placeholder="Mobile Number" class="contact__input">
+                        <input type="text" name="subject" required placeholder="Email Subject" class="contact__input">
+                    </div>
+
+                    <textarea name="message" required placeholder="Your Message" class="contact__input"></textarea>
+
+                    <p class="contact__message" id="contact-message"></p>
+
+                    <button type="submit" class="button contact__button">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!--==================== FOOTER ====================-->
     <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2025 Stellamarries Syombua. All rights reserved.</p>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#home"><i class='bx bx-chevron-up'></i></a>
+        <div class="footer__container container grid">
+            <div>
+                <h1 class="footer__title">
+                    Stella <span>Syombua</span>
+                </h1>
+                <h2 class="footer__education">
+                    Biostatistician | Data Analyst
+                </h2>
+            </div>
+
+            <div class="footer__social">
+                <a href="https://orcid.org/0009-0000-4126-2662" target="_blank" class="footer__social-link">
+                    <i class="ri-article-line"></i>
+                </a>
+                <a href="https://www.kaggle.com/stellamarries" target="_blank" class="footer__social-link">
+                    <i class="ri-bar-chart-box-line"></i>
+                </a>
+                <a href="https://github.com/stella160" target="_blank" class="footer__social-link">
+                    <i class="ri-github-fill"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/stellamarries-syombua-59151a260/" target="_blank" class="footer__social-link">
+                    <i class="ri-linkedin-box-fill"></i>
+                </a>
+            </div>
+
+            <span class="footer__copy">
+                © Copyright 2025 Stellamarries Syombua. All rights reserved
+            </span>
         </div>
     </footer>
 
-    <!-- Scroll Reveal -->
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!--=============== SCROLLREVEAL ===============-->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <!-- Typed JS -->
+
+    <!--=============== TYPED JS ===============-->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <!-- Custom JS -->
+
+    <!--=============== MAIN JS ===============-->
     <script>
-        // Toggle Menu
-        const menuIcon = document.querySelector('#menu-icon');
-        const navbar = document.querySelector('.navbar');
-        const header = document.querySelector('.header');
+        /*===== MENU SHOW =====*/
+        const navMenu = document.getElementById('nav-menu'),
+            navToggle = document.getElementById('nav-toggle'),
+            navClose = document.getElementById('nav-close')
 
-        menuIcon.onclick = () => {
-            menuIcon.classList.toggle('bx-x');
-            navbar.classList.toggle('active');
-        };
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.add('show-menu')
+            })
+        }
 
-        // Sticky Header
-        window.onscroll = () => {
-            menuIcon.classList.remove('bx-x');
-            navbar.classList.remove('active');
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                navMenu.classList.remove('show-menu')
+            })
+        }
 
-            if (window.scrollY > 100) {
-                header.classList.add('sticky');
-            } else {
-                header.classList.remove('sticky');
-            }
-        };
+        /*==================== REMOVE MENU MOBILE ====================*/
+        const navLink = document.querySelectorAll('.nav__link')
 
-        // Scroll Reveal
-        ScrollReveal({
-            reset: true,
-            distance: '80px',
-            duration: 2000,
-            delay: 200
-        });
+        const linkAction = () => {
+            const navMenu = document.getElementById('nav-menu')
+            navMenu.classList.remove('show-menu')
+        }
+        navLink.forEach(n => n.addEventListener('click', linkAction))
 
-        ScrollReveal().reveal('.home-content, .heading', {
-            origin: 'top'
-        });
-        ScrollReveal().reveal('.home-img, .services-container, .project-box, .contact-form', {
+        /*==================== ADD BLUR HEADER ====================*/
+        const blurHeader = () => {
+            const header = document.getElementById('header')
+            this.scrollY >= 50 ? header.classList.add('blur-header') :
+                header.classList.remove('blur-header')
+        }
+        window.addEventListener('scroll', blurHeader)
+
+        /*===== SCROLL SECTIONS ACTIVE LINK =====*/
+        const sections = document.querySelectorAll('section[id]')
+
+        const scrollActive = () => {
+            const scrollY = window.pageYOffset
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight,
+                    sectionTop = current.offsetTop - 58,
+                    sectionId = current.getAttribute('id'),
+                    sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    sectionsClass.classList.add('active-link')
+                } else {
+                    sectionsClass.classList.remove('active-link')
+                }
+            })
+        }
+        window.addEventListener('scroll', scrollActive)
+
+        /*===== SCROLL REVEAL ANIMATION =====*/
+        const sr = ScrollReveal({
+            origin: 'top',
+            distance: '60px',
+            duration: 2500,
+            delay: 400,
+        })
+
+        sr.reveal(`.home__data, .home__social, .contact__container, .footer__container`)
+        sr.reveal(`.home__image`, {
             origin: 'bottom'
-        });
-        ScrollReveal().reveal('.home-content h1, .about-img', {
+        })
+        sr.reveal(`.about__data, .skills__data`, {
             origin: 'left'
-        });
-        ScrollReveal().reveal('.home-content p, .about-content', {
+        })
+        sr.reveal(`.about__image, .skills__content`, {
             origin: 'right'
-        });
+        })
+        sr.reveal(`.services__card, .projects__card`, {
+            interval: 100
+        })
 
-        // Typed JS
+        /*=============== SHOW SCROLL UP ===============*/
+        const scrollUp = () => {
+            const scrollUp = document.getElementById('scroll-up')
+            this.scrollY >= 350 ? scrollUp.classList.add('show-scroll') :
+                scrollUp.classList.remove('show-scroll')
+        }
+        window.addEventListener('scroll', scrollUp)
+
+        /*=============== TYPED JS ===============*/
         const typed = new Typed('.multiple-text', {
             strings: ['Biostatistician', 'Data Analyst', 'Researcher'],
             typeSpeed: 100,
